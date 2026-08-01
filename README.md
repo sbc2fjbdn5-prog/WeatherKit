@@ -4,10 +4,10 @@
 
 ## Quantumult X
 
-推荐使用固定 Release 地址：
+推荐使用固定标签的 Raw 地址（浏览器会直接显示文本）：
 
 ```text
-https://github.com/sbc2fjbdn5-prog/WeatherKit/releases/download/v3.2.0-beta4/iRingo.WeatherKit.snippet
+https://raw.githubusercontent.com/sbc2fjbdn5-prog/WeatherKit/refs/tags/v3.2.0-beta4/iRingo.WeatherKit.snippet
 ```
 
 主分支 Raw 地址：
@@ -17,6 +17,8 @@ https://raw.githubusercontent.com/sbc2fjbdn5-prog/WeatherKit/refs/heads/main/iRi
 ```
 
 在 Quantumult X 中进入“设置 → 重写 → 右上角＋”，将上述地址作为资源路径添加。
+
+Release 附件地址用于下载备份文件，浏览器点击后会下载；在 Quantumult X 中订阅时优先使用上面的 Raw 地址。
 
 ## 其他客户端
 
