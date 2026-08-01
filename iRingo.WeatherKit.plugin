@@ -6,9 +6,8 @@
 #!icon = https://developer.apple.com/assets/elements/icons/weatherkit/weatherkit-128x128.png
 #!tag =  iRingo
 #!system = iOS,iPadOS,macOS,watchOS
-#!date = 2026-07-18 02:27:19
-#!version = 3.2.0-beta1
-#!modified = 2026-07-26 by sbc2fjbdn5-prog: mirrored runtime dependency to this repository
+#!date = 2026-08-01 17:13:18
+#!version = 3.2.0-beta4
 #!system_version = 18
 
 [Argument]
@@ -29,8 +28,14 @@ DOMAIN,tether.edge.apple,REJECT-DROP
 AND,((OR,((IP-ASN,714,no-resolve),(IP-ASN,6185,no-resolve))),(PROTOCOL,QUIC)),REJECT-DROP
 
 [Script]
-http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v1\/availability\/ requires-body=1, script-path=https://raw.githubusercontent.com/sbc2fjbdn5-prog/WeatherKit/main/response.bundle.js, tag=🌤 WeatherKit.api.v1.availability.response, argument=[{Weather.Provider},{NextHour.Provider},{AirQuality.Calculate.Algorithm},{API.ColorfulClouds.Token},{API.QWeather.Host},{API.QWeather.Token},{API.WAQI.Token},{Storage},{LogLevel}]
-http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v2\/weather\/ requires-body=1, binary-body-mode=1, script-path=https://raw.githubusercontent.com/sbc2fjbdn5-prog/WeatherKit/main/response.bundle.js, tag=🌤 WeatherKit.api.v2.weather.response, argument=[{Weather.Provider},{NextHour.Provider},{AirQuality.Calculate.Algorithm},{API.ColorfulClouds.Token},{API.QWeather.Host},{API.QWeather.Token},{API.WAQI.Token},{Storage},{LogLevel}]
+http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v1\/availability\/ requires-body=1, script-path=https://github.com/sbc2fjbdn5-prog/WeatherKit/releases/download/v3.2.0-beta4/response.bundle.js, tag=🌤 WeatherKit.api.v1.availability.response, argument=[{Weather.Provider},{NextHour.Provider},{AirQuality.Calculate.Algorithm},{API.ColorfulClouds.Token},{API.QWeather.Host},{API.QWeather.Token},{API.WAQI.Token},{Storage},{LogLevel}]
+http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v1\/weatherAlerts\?[^#]*&ids=[^&#]*-[0-9]{9}(?:&|$) requires-body=1, script-path=https://github.com/sbc2fjbdn5-prog/WeatherKit/releases/download/v3.2.0-beta4/response.bundle.js, tag=🌤 WeatherKit.api.v1.weatherAlerts.response, argument=[{Weather.Provider},{NextHour.Provider},{AirQuality.Calculate.Algorithm},{API.ColorfulClouds.Token},{API.QWeather.Host},{API.QWeather.Token},{API.WAQI.Token},{Storage},{LogLevel}]
+http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v2\/weather\/ requires-body=1, binary-body-mode=1, script-path=https://github.com/sbc2fjbdn5-prog/WeatherKit/releases/download/v3.2.0-beta4/response.bundle.js, tag=🌤 WeatherKit.api.v2.weather.response, argument=[{Weather.Provider},{NextHour.Provider},{AirQuality.Calculate.Algorithm},{API.ColorfulClouds.Token},{API.QWeather.Host},{API.QWeather.Token},{API.WAQI.Token},{Storage},{LogLevel}]
+
+[URL Rewrite]
+# 🌤 WeatherKit.alertDetails.index.response
+^https?:\/\/www\.qweather\.com\/{1,2}severe-weather\/([^/?#]+)\.html\?from=AppleWeatherService$ https://weatherkit.apple.com/alertDetails/index.html?ids=$1&lang=zh-CN&party=qweather 302
+^https?:\/\/www\.qweather\.com\/en\/severe-weather\/([^/?#]+)\.html\?from=AppleWeatherService$ https://weatherkit.apple.com/alertDetails/index.html?ids=$1&lang=en-US&party=qweather 302
 
 [MITM]
-hostname = weatherkit.apple.com
+hostname = weatherkit.apple.com, www.qweather.com
