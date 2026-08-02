@@ -30,8 +30,8 @@ Release 附件地址用于下载备份文件，浏览器点击后会下载；在
 
 ## 镜像内容
 
-- 四种客户端配置均将 `response.bundle.js` 改为本仓库固定 Release 地址。
-- `request.bundle.js`、`response.bundle.js` 均保存在仓库和 Release 中。
+- 四种客户端配置均将 `request.bundle.js`、`response.bundle.js` 改为本仓库固定 Release 地址。
+- `request.bundle.js`、`response.bundle.js` 均保存在仓库和 Release 中；新版天气预警请求使用 `request.bundle.js`。
 - `response.bundle.js` 使用的 QWeather 城市网格及六个天气图标均改为本仓库固定标签地址。
 - `upstream-*` 文件保存未经修改的原始 Release 附件。
 - [`SOURCE.md`](SOURCE.md) 记录来源版本、提交和修改范围。
